@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CSC131-GroupProject.iml" filepath="$PROJECT_DIR$/.idea/CSC131-GroupProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CSC131Project-master/CSC131-main/simple-rest-apis-master/simple-rest-apis.iml" filepath="$PROJECT_DIR$/CSC131Project-master/CSC131-main/simple-rest-apis-master/simple-rest-apis.iml" />
+    </modules>
+  </component>
+</project>
