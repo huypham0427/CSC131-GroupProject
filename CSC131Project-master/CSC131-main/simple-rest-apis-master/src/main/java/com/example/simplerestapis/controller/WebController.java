@@ -39,14 +39,14 @@ public class WebController {
 		response.setMessage("Your category is " + category);
 		return response;
 
-		//ArrayList CategoryList;
-		ArrayList<Categories> CategoryList = new ArrayList<>();
-		CategoryList.add("Horror");
-		//System.out.println(CategoryList);
-		CategoryList.add(new Categories( "Horror"));
-		//CategoryList.add(new Categories("Drama"));
-		// ArrayList of Strings
-		// a class categoryList for category to store values
+//		//ArrayList CategoryList;
+//		ArrayList<Categories> CategoryList = new ArrayList<>();
+//		CategoryList.add("Horror");
+//		//System.out.println(CategoryList);
+//		CategoryList.add(new Categories( "Horror"));
+//		//CategoryList.add(new Categories("Drama"));
+//		// ArrayList of Strings
+//		// a class categoryList for category to store values
 
 
 	}

@@ -9,14 +9,14 @@ import org.json.simple.JSONObject;
 
 
 public class Categories {
-    @SuppressWarnings("unchecked")
-    private ArrayList CategoryList;
-    //@SerializedName("category")
-    private ArrayList mCategory;
-
-    //private String CategoryList;
-    public Categories(String category){
-        //mCategory = category;
-        CategoryList=category;
+//    @SuppressWarnings("unchecked")
+//    private ArrayList CategoryList;
+//    //@SerializedName("category")
+//    private ArrayList mCategory;
+//
+//    //private String CategoryList;
+//    public Categories(String category){
+//        //mCategory = category;
+//        CategoryList=category;
     }
-}
+//}

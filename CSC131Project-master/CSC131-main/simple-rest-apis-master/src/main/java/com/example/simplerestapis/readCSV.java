@@ -17,13 +17,15 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/Downloads/cs131project/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
             String line = reader.readLine();
+          boolean test = line.contains("True");
             while (line != null) {
-                String[] arrOfStr = line.split(",", -1);
-                //for (String a: arrOfStr) System.out.println(a);
+                String[] arrOfStr = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+//                for (String a: arrOfStr) System.out.println(a);
                 counter++;
                 for(String a: arrOfStr)
+
 
                     filmYear= arrOfStr[0];
                 ceremonyYear = arrOfStr[1];
@@ -38,7 +40,7 @@ public class readCSV{
                 //System.out.println(category);
                 //System.out.println(Name);
                 //System.out.println(film);
-                System.out.println(counter + winner);
+                System.out.println(counter + " " + winner);
                 //for (String a: arrOfStr) System.out.println(a);
 
                 // read next line
