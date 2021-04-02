@@ -16,7 +16,8 @@ public class readCSV{
         String s;
 
         int counter = 0;
-        String[] arrb = new String[10396];
+
+        ArrayList<String> data = new ArrayList<String>();
 
         BufferedReader reader;
         try {
@@ -50,8 +51,10 @@ public class readCSV{
 
                     //System.out.println(counter + ". " + filmYear + ", " + ceremonyYear + ", " + ceremony + ", " + category + ", " + Name + ", " + film + ", " + winner);
 
-                    arrb [counter - 1] = s;
+                    data.add(s);
+
                 }
+
                 // read next line
                 line = reader.readLine();
             }
@@ -61,10 +64,8 @@ public class readCSV{
             e.printStackTrace();
         }
 
-        Arrays.sort(arrb);
-        for( int i = 0; i <= 10396; i++){
-            System.out.println(arrb[i].toString());
-        }
+        Collections.sort(data);
+        System.out.println(data);
         //System.out.println(Arrays.toString(arrb));
     }
 }
