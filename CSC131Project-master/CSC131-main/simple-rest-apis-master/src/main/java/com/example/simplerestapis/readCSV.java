@@ -17,6 +17,8 @@ public class readCSV{
 
         int counter = 0;
 
+        ArrayList<String> arr = new ArrayList<String>();
+        /*
         ArrayList<String> filmYear2 = new ArrayList<String>();
         ArrayList<String> ceremonyYear2 = new ArrayList<String>();
         ArrayList<String> ceremony2 = new ArrayList<String>();
@@ -24,6 +26,7 @@ public class readCSV{
         ArrayList<String> Name2 = new ArrayList<String>();
         ArrayList<String> film2 = new ArrayList<String>();
         ArrayList<String> winner2 = new ArrayList<String>();
+        */
 
 
         BufferedReader reader;
@@ -47,7 +50,7 @@ public class readCSV{
                     film = arrOfStr[5];
                     winner = arrOfStr[6];
 
-                    //s = category + " " + ceremonyYear + " " + ceremony + " " + filmYear + " " + Name + " " + film + " " + winner  + "\n";
+                    s = category + " " + ceremonyYear + " " + ceremony + " " + filmYear + " " + Name + " " + film + " " + winner  + "\n";
                     //System.out.println(counter + " " + filmYear);
                     //System.out.println(counter + " " + ceremony);
                     //System.out.println(counter + " " +ceremonyYear);
@@ -58,6 +61,7 @@ public class readCSV{
 
                     //System.out.println(counter + ". " + filmYear + ", " + ceremonyYear + ", " + ceremony + ", " + category + ", " + Name + ", " + film + ", " + winner);
 
+                    /*
                     filmYear2.add(filmYear);
                     ceremonyYear2.add(ceremonyYear);
                     ceremony2.add(ceremony);
@@ -65,8 +69,9 @@ public class readCSV{
                     Name2.add(Name);
                     film2.add(film);
                     winner2.add(winner);
+                    */
 
-
+                    arr.add(s);
                 }
 
                 // read next line
@@ -78,6 +83,7 @@ public class readCSV{
             e.printStackTrace();
         }
 
+        /*
         Collections.sort(filmYear2);
         Collections.sort(ceremonyYear2);
         Collections.sort(ceremony2);
@@ -85,8 +91,15 @@ public class readCSV{
         Collections.sort(Name2);
         Collections.sort(film2);
         Collections.sort(winner2);
+        */
 
-        System.out.println(category2.get(2));
+        Collections.sort(arr);
+
+        for(int i = 0; i < arr.size(); i++){
+
+            System.out.print(arr.get(i));
+
+        }
     }
 }
 
