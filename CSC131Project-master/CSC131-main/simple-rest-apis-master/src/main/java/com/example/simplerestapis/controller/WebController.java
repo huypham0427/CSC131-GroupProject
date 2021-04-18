@@ -1,27 +1,24 @@
 package com.example.simplerestapis.controller;
-import com.example.simplerestapis.Categories;
-import com.example.simplerestapis.models.CategoryResponse;
+import com.example.simplerestapis.Award;
+import com.example.simplerestapis.Movies;
 //import com.google.gson.annotations.SerializedName;
 //import jdk.jfr.Category;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.simplerestapis.readCSV;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.simplerestapis.models.PostRequest;
 import com.example.simplerestapis.models.PostResponse;
 import com.example.simplerestapis.models.SampleResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class WebController {
 
-	//@SerializedName("category")
-	//private String mCategory;
+	private static final List<Movies> ALL_MOVIES = readCSV.all();
 
-	@RequestMapping("/movies")
+	@GetMapping("/movies")
 	public SampleResponse Sample(@RequestParam(value = "name",
 	defaultValue = "null") String name) {
 		SampleResponse response = new SampleResponse();
@@ -31,25 +28,58 @@ public class WebController {
 	}
 
 
-	@RequestMapping("/movies/categories")
-	public CategoryResponse Category(@RequestParam(value = "name",
-			defaultValue = "null") String category) {
-		CategoryResponse response = new CategoryResponse();
-		response.setId(1927);
-		response.setMessage("Your category is " + category);
-		return response;
+//	@GetMapping("/movies/{category}")
+//	public ArrayList<Movies> movie(@PathVariable(required = false) String category,
+//								   @RequestParam(value = "type") String type){
+//		ArrayList<Movies> matchCategory = new ArrayList<>();
+//		for (Movies movie : ALL_MOVIES) {
+//			for (Award award : movie.getAwards()) {
+//				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
+//					if ("true".equalsIgnoreCase(type) && award.isWinner()){
+//						matchCategory.add(movie);
+//					break;
+//				}
+//				}
+//			}
+//		}
+//		return matchCategory;
+//	}
 
-//		//ArrayList CategoryList;
-//		ArrayList<Categories> CategoryList = new ArrayList<>();
-//		CategoryList.add("Horror");
-//		//System.out.println(CategoryList);
-//		CategoryList.add(new Categories( "Horror"));
-//		//CategoryList.add(new Categories("Drama"));
-//		// ArrayList of Strings
-//		// a class categoryList for category to store values
-
-
+	@GetMapping("/movies/category")
+	public List<Movies> movie(@PathVariable("category") String category
+							  @RequestParam(value = "year", defaultValue = "none") String year)
+	{
+		ArrayList<Movies> matchList = new ArrayList<>();
+		for (Movies movie : ALL_MOVIES) {
+			if (movie.getTitle().contains(category))
+			{
+				matchList.add(movie);
+			}
+		}
+		return matchList;
 	}
+
+
+	@GetMapping("/winner")
+	public List<Movies> winner()
+	{
+		ArrayList<Movies> won = new ArrayList<>();
+
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards())
+			{
+				if (award.isWinner())
+				{
+					won.add(movie);
+					break;
+				}
+			}
+		}
+		return won;
+	}
+
+
 	@RequestMapping(value = "/test", method = RequestMethod.POST)
 	public PostResponse Test(@RequestBody PostRequest inputPayload) {
 		PostResponse response = new PostResponse();
