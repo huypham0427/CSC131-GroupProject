@@ -45,20 +45,15 @@ public class WebController {
 //		return matchCategory;
 //	}
 
-	@GetMapping("/movies/category")
-	public List<Movies> movie(@PathVariable("category") String category
-							  @RequestParam(value = "year", defaultValue = "none") String year)
-	{
+
+	@GetMapping("/movies/{category}")
+	public ArrayList<Movies> movie(@PathVariable("category") String category){
 		ArrayList<Movies> matchList = new ArrayList<>();
 		for (Movies movie : ALL_MOVIES) {
-			if (movie.getTitle().contains(category))
-			{
-				matchList.add(movie);
-			}
+			matchList.add(movie);
 		}
 		return matchList;
 	}
-
 
 	@GetMapping("/winner")
 	public List<Movies> winner()
