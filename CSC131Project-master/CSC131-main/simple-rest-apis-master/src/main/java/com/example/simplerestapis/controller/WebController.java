@@ -53,7 +53,11 @@ public class WebController {
 		{
 			for (Award award : movie.getAwards()) {
 				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
-					matchList.add(movie);
+					if(category.contains(" "))
+					{
+						// do something
+					}
+						matchList.add(movie);
 				}
 			}
 		}
