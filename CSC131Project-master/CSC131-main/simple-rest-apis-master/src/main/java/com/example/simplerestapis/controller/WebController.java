@@ -49,8 +49,13 @@ public class WebController {
 	@GetMapping("/movies/{category}")
 	public ArrayList<Movies> movie(@PathVariable("category") String category){
 		ArrayList<Movies> matchList = new ArrayList<>();
-		for (Movies movie : ALL_MOVIES) {
-			matchList.add(movie);
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards()) {
+				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
+					matchList.add(movie);
+				}
+			}
 		}
 		return matchList;
 	}
