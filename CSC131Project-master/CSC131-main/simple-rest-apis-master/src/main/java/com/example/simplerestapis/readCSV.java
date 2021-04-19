@@ -40,7 +40,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -48,7 +48,7 @@ public class readCSV{
                 String[] arrOfStr = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
                 counter++;
 
-                if (!arrOfStr[5].equals(" "))
+                if (!arrOfStr[5].equals(""))
                 {
                     filmYear = arrOfStr[0];
                     ceremonyYear = arrOfStr[1];
@@ -58,7 +58,7 @@ public class readCSV{
                     film = arrOfStr[5];
                     winner = arrOfStr[6];
 
-                    Movies object =(new Movies(filmYear, Name, ceremony));
+                    Movies object =(new Movies(filmYear, Name, ceremony, film));
 
                     if (!arr.contains(object)){
                         arr.add(object);
@@ -66,28 +66,6 @@ public class readCSV{
 
                     arr.get(arr.indexOf(object)).addAward(new Award(category, Name, Boolean.parseBoolean(winner)));
 
-                    //s = category + " " + ceremonyYear + " " + ceremony + " " + filmYear + " " + Name + " " + film + " " + winner  + "\n";
-                    //System.out.println(counter + " " + filmYear);
-                    //System.out.println(counter + " " + ceremony);
-                    //System.out.println(counter + " " +ceremonyYear);
-                    //System.out.println(counter + " "+ category);
-                    //System.out.println(counter + " "+ Name);
-                    //System.out.println(counter + " " + film);
-                    //System.out.println(counter + " " + winner);
-
-                    //System.out.println(counter + ". " + filmYear + ", " + ceremonyYear + ", " + ceremony + ", " + category + ", " + Name + ", " + film + ", " + winner);
-
-                    /*
-                    filmYear2.add(filmYear);
-                    ceremonyYear2.add(ceremonyYear);
-                    ceremony2.add(ceremony);
-                    category2.add(category);
-                    Name2.add(Name);
-                    film2.add(film);
-                    winner2.add(winner);
-                    */
-
-                    arr.add(object);
                 }
 
                 // read next line

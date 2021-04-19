@@ -27,37 +27,22 @@ public class WebController {
 		return response;
 	}
 
-
-//	@GetMapping("/movies/{category}")
-//	public ArrayList<Movies> movie(@PathVariable(required = false) String category,
-//								   @RequestParam(value = "type") String type){
-//		ArrayList<Movies> matchCategory = new ArrayList<>();
-//		for (Movies movie : ALL_MOVIES) {
-//			for (Award award : movie.getAwards()) {
-//				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
-//					if ("true".equalsIgnoreCase(type) && award.isWinner()){
-//						matchCategory.add(movie);
-//					break;
-//				}
-//				}
-//			}
-//		}
-//		return matchCategory;
-//	}
-
-
-	@GetMapping("/movies/{category}")
-	public ArrayList<Movies> movie(@PathVariable("category") String category){
+	@GetMapping("/movies/{category}/year/{year}/{winner}")
+	public ArrayList<Movies> movie(@PathVariable("category") String category,
+	                               @PathVariable("year") String year
+								   ){
 		ArrayList<Movies> matchList = new ArrayList<>();
+		ArrayList<Movies> matchYear = new ArrayList<>();
 		for (Movies movie : ALL_MOVIES)
 		{
 			for (Award award : movie.getAwards()) {
-				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
-					if(category.contains(" "))
-					{
-						// do something
-					}
-						matchList.add(movie);
+				// Get the match Categories
+				if (award.getCategory().toUpperCase().equals(category.toUpperCase())
+						&& movie.getYear().equals(year)
+						&& award.isWinner())
+				{
+					matchList.add(movie);
+					break;
 				}
 			}
 		}
