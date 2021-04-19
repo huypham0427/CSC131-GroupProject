@@ -12,7 +12,6 @@ import java.io.*;
 
 public class readCSV{
 
-
     public static List<Movies> all(){
         String filmYear;
         String ceremonyYear;
@@ -40,7 +39,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
+                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -123,6 +122,37 @@ public class readCSV{
 //        System.out.print(1);
 //
 //    }
+
+    public static ArrayList<String> get_Category()
+    {
+        String category;
+        ArrayList<String> arr = new ArrayList<>();
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(
+                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
+            String line = reader.readLine();
+
+            while (line != null) {
+
+                String[] arrOfStr = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+
+                if (!arrOfStr[5].equals(" "))
+                {
+                    category = arrOfStr[3];
+                    arr.add(category);
+                }
+                line = reader.readLine();
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Collections.sort(arr);
+        return arr;
+    }
 }
 
 

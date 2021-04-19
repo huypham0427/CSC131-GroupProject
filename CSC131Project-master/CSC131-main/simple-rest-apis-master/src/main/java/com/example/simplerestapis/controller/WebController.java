@@ -17,6 +17,7 @@ import java.util.List;
 public class WebController {
 
 	private static final List<Movies> ALL_MOVIES = readCSV.all();
+	private static final ArrayList<String> ALL_CATEGORIES = readCSV.get_Category();
 
 	@GetMapping("/movies")
 	public SampleResponse Sample(@RequestParam(value = "name",
@@ -46,23 +47,32 @@ public class WebController {
 //	}
 
 
-	@GetMapping("/movies/{category}")
+	@GetMapping("/movies/categories")
+	public ArrayList<String> cat() {
+
+		ArrayList<String> list = new ArrayList<String>();
+		return list;
+
+	}
+
+	//@GetMapping("/categories/{category})
+
+	/*
+	@GetMapping("/movies/{category})
 	public ArrayList<Movies> movie(@PathVariable("category") String category){
 		ArrayList<Movies> matchList = new ArrayList<>();
 		for (Movies movie : ALL_MOVIES)
 		{
 			for (Award award : movie.getAwards()) {
 				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
-					if(category.contains(" "))
-					{
-						// do something
-					}
-						matchList.add(movie);
+					matchList.add(movie);
 				}
 			}
 		}
 		return matchList;
 	}
+
+	 */
 
 	@GetMapping("/winner")
 	public List<Movies> winner()
