@@ -17,7 +17,6 @@ import java.util.List;
 public class WebController {
 
 	private static final List<Movies> ALL_MOVIES = readCSV.all();
-	private static final ArrayList<String> ALL_CATEGORIES = readCSV.get_Category();
 
 	@GetMapping("/movies")
 	public SampleResponse Sample(@RequestParam(value = "name",
@@ -28,51 +27,27 @@ public class WebController {
 		return response;
 	}
 
-
-//	@GetMapping("/movies/{category}")
-//	public ArrayList<Movies> movie(@PathVariable(required = false) String category,
-//								   @RequestParam(value = "type") String type){
-//		ArrayList<Movies> matchCategory = new ArrayList<>();
-//		for (Movies movie : ALL_MOVIES) {
-//			for (Award award : movie.getAwards()) {
-//				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
-//					if ("true".equalsIgnoreCase(type) && award.isWinner()){
-//						matchCategory.add(movie);
-//					break;
-//				}
-//				}
-//			}
-//		}
-//		return matchCategory;
-//	}
-
-
-	@GetMapping("/movies/categories")
-	public ArrayList<String> cat() {
-
-		ArrayList<String> list = new ArrayList<String>();
-		return list;
-
-	}
-
-	//@GetMapping("/categories/{category})
-
-	/*
-	@GetMapping("/movies/{category})
-	public ArrayList<Movies> movie(@PathVariable("category") String category){
+	@GetMapping("/movies/{category}/year/{year}/{winner}")
+	public ArrayList<Movies> movie(@PathVariable("category") String category,
+	                               @PathVariable("year") String year
+								   ){
 		ArrayList<Movies> matchList = new ArrayList<>();
+		ArrayList<Movies> matchYear = new ArrayList<>();
 		for (Movies movie : ALL_MOVIES)
 		{
 			for (Award award : movie.getAwards()) {
-				if (award.getCategory().toUpperCase().contains(category.toUpperCase())) {
+				// Get the match Categories
+				if (award.getCategory().toUpperCase().equals(category.toUpperCase())
+						&& movie.getYear().equals(year)
+						&& award.isWinner())
+				{
 					matchList.add(movie);
+					break;
 				}
 			}
 		}
 		return matchList;
 	}
-
-	 */
 
 	@GetMapping("/winner")
 	public List<Movies> winner()
