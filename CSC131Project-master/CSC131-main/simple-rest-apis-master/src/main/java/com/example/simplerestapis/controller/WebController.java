@@ -49,6 +49,27 @@ public class WebController {
 		return matchList;
 	}
 
+	@GetMapping("/movies/search")
+	public ArrayList<Movies> search(@RequestParam(value = "year", defaultValue = "null") String year
+								   //@PathVariable("category") String category
+	){
+		ArrayList<Movies> matchList = new ArrayList<>();
+		ArrayList<Movies> matchYear = new ArrayList<>();
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards()) {
+				// Get the match Categories
+				if (movie.getYear().equals(year))
+				{
+					matchList.add(movie);
+					break;
+				}
+			}
+		}
+		return matchList;
+	}
+
+
 	@GetMapping("/movies/categories")
 	public ArrayList<String> cat() {
 		int j = 0;
