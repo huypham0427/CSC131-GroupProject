@@ -17,6 +17,7 @@ import java.util.List;
 public class WebController {
 
 	private static final List<Movies> ALL_MOVIES = readCSV.all();
+	private static final ArrayList<String> ALL_CATEGORIES = readCSV.get_Category();
 
 	@GetMapping("/movies")
 	public SampleResponse Sample(@RequestParam(value = "name",
@@ -27,10 +28,30 @@ public class WebController {
 		return response;
 	}
 
+
+	@GetMapping("/movies/categories")
+	public ArrayList<String> cat() {
+		int j = 0;
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(ALL_CATEGORIES.get(0));
+
+		for(int i = 1; i <= ALL_CATEGORIES.size() - 2; i++)
+		{
+			int key = ALL_CATEGORIES.get(i).compareTo(list.get(j));
+			if(key != 0)
+			{
+				j++;
+				list.add(ALL_CATEGORIES.get(i));
+			}
+		}
+
+		return list;
+	}
+
+
 	@GetMapping("/movies/{category}/year/{year}/{winner}")
 	public ArrayList<Movies> movie(@PathVariable("category") String category,
-	                               @PathVariable("year") String year
-								   ){
+								   @PathVariable("year") String year){
 		ArrayList<Movies> matchList = new ArrayList<>();
 		ArrayList<Movies> matchYear = new ArrayList<>();
 		for (Movies movie : ALL_MOVIES)
@@ -48,6 +69,7 @@ public class WebController {
 		}
 		return matchList;
 	}
+
 
 	@GetMapping("/winner")
 	public List<Movies> winner()
