@@ -14,54 +14,35 @@ public class Movies {
     private String Name;
 
 
-    public Movies(String year, String Name, String ceremony, String film)
-    {
+    public Movies(String year, String Name, String ceremony, String film) {
         //this.title = title;
         this.year = year;
         this.ceremony = ceremony;
         this.awards = new ArrayList<>();
         this.Name = Name;
         this.film = film;
-
     }
 
 
-    public void addAward(Award award){
+    public void addAward(Award award) {
         awards.add(award);
     }
 
-    public String getFilm(){
+    public String getFilm() {
         return film;
     }
 
-//    public String getTitle()
-//    {
-//        return title;
-//    }
+    public String getCat() {
+        return category;
+    }
 
-    public String getYear()
-    {
+    public String getYear() {
         return year;
     }
 
-    public String getCeremony()
-    {
+    public String getCeremony() {
         return ceremony;
     }
 
-    public List<Award> getAwards()
-    {
-        return awards;
-    }
-
-    // Format the output of elements in the apis
-//    @Override
-//    public String toString()
-//    {
-//        return "Movie{ " +
-//                "year='" + year + '\'' +
-//                ", ceremony='" + ceremony + '\'' +
-//                ", awards=" + awards +
-//                '}' + "\n";
-//    }
+    public List<Award> getAwards() { return awards; }
 }
