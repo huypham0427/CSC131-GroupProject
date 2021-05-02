@@ -40,7 +40,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "C:/Users/jthic/spring/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -104,7 +104,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "C:/Users/jthic/spring/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -127,6 +127,7 @@ public class readCSV{
         Collections.sort(arr);
         return arr;
     }
+
 }
 
 
