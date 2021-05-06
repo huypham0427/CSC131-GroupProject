@@ -26,21 +26,13 @@ public class readCSV{
         int counter = 0;
 
         ArrayList<Movies> arr = new ArrayList<>();
-        /*
-        ArrayList<String> filmYear2 = new ArrayList<String>();
-        ArrayList<String> ceremonyYear2 = new ArrayList<String>();
-        ArrayList<String> ceremony2 = new ArrayList<String>();
-        ArrayList<String> category2 = new ArrayList<String>();
-        ArrayList<String> Name2 = new ArrayList<String>();
-        ArrayList<String> film2 = new ArrayList<String>();
-        ArrayList<String> winner2 = new ArrayList<String>();
-        */
+
 
 
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award_1.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -58,6 +50,7 @@ public class readCSV{
                     film = arrOfStr[5];
                     winner = arrOfStr[6];
 
+                    category = category.replaceAll("\\s+", "_").toUpperCase();
                     Movies object =(new Movies(filmYear, Name, ceremony, film));
 
                     if (!arr.contains(object)){
@@ -77,23 +70,6 @@ public class readCSV{
             e.printStackTrace();
         }
 
-        /*
-        Collections.sort(filmYear2);
-        Collections.sort(ceremonyYear2);
-        Collections.sort(ceremony2);
-        Collections.sort(category2);
-        Collections.sort(Name2);
-        Collections.sort(film2);
-        Collections.sort(winner2);
-        */
-
-//        Collections.sort(arr);
-//
-//        for(int i = 0; i < arr.size(); i++){
-//
-//            System.out.print(arr.get(i));
-//
-//        }
         return arr;
     }
 
@@ -104,7 +80,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award_1.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -114,6 +90,7 @@ public class readCSV{
                 if (!arrOfStr[5].equals(" "))
                 {
                     category = arrOfStr[3];
+                    category = category.replaceAll("\\s+", "_").toUpperCase();
                     arr.add(category);
                 }
                 line = reader.readLine();
@@ -127,6 +104,7 @@ public class readCSV{
         Collections.sort(arr);
         return arr;
     }
+
 }
 
 
