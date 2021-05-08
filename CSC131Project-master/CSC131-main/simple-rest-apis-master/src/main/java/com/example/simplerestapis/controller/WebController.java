@@ -26,12 +26,13 @@ public class WebController {
 		response.setMessage("Your movie is "+name);
 		return response;
 	}
+
 	/**
-	 http://localhost:8080/movies/bestpicture/year/2000/winner
-	 **/
-
-	@CrossOrigin
-
+	 * http://localhost:8080/categories/bestpicture/year/1979
+	 * @param category
+	 * @param year
+	 * @return
+	 */
 	@GetMapping("/categories/{category}/year/{year}")
 	public ArrayList<Movies> movies(@PathVariable("category") String category,
 								   @PathVariable("year") String year
@@ -54,6 +55,10 @@ public class WebController {
 		return matchList;
 	}
 
+	/**
+	 http://localhost:8080/movies/bestpicture/year/2000/winner
+	 **/
+	@CrossOrigin
 	@GetMapping("/movies/{category}/year/{year}/{winner}")
 	public ArrayList<Movies> movie(@PathVariable("category") String category,
 	                               @PathVariable("year") String year

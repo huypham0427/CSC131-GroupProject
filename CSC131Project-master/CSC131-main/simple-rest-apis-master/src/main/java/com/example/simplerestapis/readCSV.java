@@ -40,7 +40,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/Downloads/reeeeeeeee/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -104,7 +104,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/Downloads/reeeeeeeee/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -135,7 +135,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award.csv"));
             String line = reader.readLine();
 
             while (line != null) {
