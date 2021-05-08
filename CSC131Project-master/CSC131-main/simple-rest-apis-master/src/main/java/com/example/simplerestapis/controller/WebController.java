@@ -18,13 +18,44 @@ public class WebController {
 
 	private static final List<Movies> ALL_MOVIES = readCSV.all();
 	private static final ArrayList<String> ALL_CATEGORIES = readCSV.get_Category();
+	private static final ArrayList<String> ALL_TITLES = readCSV.get_Titles();
+
 	@GetMapping("/movies")
-	public SampleResponse Sample(@RequestParam(value = "name",
-	defaultValue = "null") String name) {
-		SampleResponse response = new SampleResponse();
-		response.setId(1927);
-		response.setMessage("Your movie is "+name);
-		return response;
+	public ArrayList<String> titles()
+	{
+		int j = 0;
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(ALL_TITLES.get(0));
+
+		for(int i = 1; i <= ALL_TITLES.size() - 2; i++)
+		{
+			int key = ALL_TITLES.get(i).compareTo(list.get(j));
+			if(key != 0)
+			{
+				j++;
+				list.add(ALL_TITLES.get(i));
+			}
+		}
+		return list;
+	}
+
+	@GetMapping("/movies/{category}")
+	public ArrayList<Movies> movie(@PathVariable("category") String category)
+	{
+		ArrayList<Movies> matchList = new ArrayList<>();
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards())
+			{
+				// Get the match Categories
+				if (award.getCategory().equalsIgnoreCase(category))
+				{
+					matchList.add(movie);
+					break;
+				}
+			}
+		}
+		return matchList;
 	}
 
 	/**
@@ -58,7 +89,7 @@ public class WebController {
 	/**
 	 http://localhost:8080/movies/bestpicture/year/2000/winner
 	 **/
-	@CrossOrigin
+
 	@GetMapping("/movies/{category}/year/{year}/{winner}")
 	public ArrayList<Movies> movie(@PathVariable("category") String category,
 	                               @PathVariable("year") String year
@@ -87,25 +118,26 @@ public class WebController {
 	 * @param category
 	 * @return
 	 */
-	@CrossOrigin
-	@GetMapping("/movies/search")
-	public ArrayList search(@RequestParam(value = "year", defaultValue= "null" ) String year,
-					   @RequestParam(value = "category") String category )
-	{
 
+	@GetMapping("/movies/search")
+	public ArrayList<Movies> search(@RequestParam(value = "year", defaultValue = "null") String year
+			,@RequestParam(value = "category", defaultValue = "null") String category)
+	{
 		ArrayList<Movies> matchSearch = new ArrayList<>();
+
 		for (Movies movie : ALL_MOVIES)
 		{
-			for (Award award : movie.getAwards()) {
+			for (Award award : movie.getAwards())
+			{
 				// Get the match Categories
-				if (movie.getYear().equals(year) && award.getCategory().toUpperCase().equals(category.toUpperCase()))
+				if (movie.getYear().equals(year) && award.getCategory().equalsIgnoreCase(category))
+				{
 					matchSearch.add(movie);
 					break;
+				}
 			}
 		}
-
-		return  matchSearch;
-
+		return matchSearch;
 	}
 
 	/**
