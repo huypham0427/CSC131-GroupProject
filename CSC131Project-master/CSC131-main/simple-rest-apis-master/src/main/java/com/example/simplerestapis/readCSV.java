@@ -40,7 +40,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "C:/Users/jthic/spring/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -104,7 +104,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "C:/Users/jthic/spring/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -115,6 +115,37 @@ public class readCSV{
                 {
                     category = arrOfStr[3];
                     arr.add(category);
+                }
+                line = reader.readLine();
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Collections.sort(arr);
+        return arr;
+    }
+
+    public static ArrayList<String> get_Movies()
+    {
+        String Movies;
+        ArrayList<String> arr = new ArrayList<>();
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(
+                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+            String line = reader.readLine();
+
+            while (line != null) {
+
+                String[] arrOfStr = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+
+                if (!arrOfStr[5].equals(" "))
+                {
+                    Movies = arrOfStr[5];
+                    arr.add(Movies);
                 }
                 line = reader.readLine();
             }

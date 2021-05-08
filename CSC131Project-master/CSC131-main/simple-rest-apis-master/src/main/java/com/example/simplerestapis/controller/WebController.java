@@ -23,10 +23,14 @@ public class WebController {
 	defaultValue = "null") String name) {
 		SampleResponse response = new SampleResponse();
 		response.setId(1927);
-		response.setMessage("Your movie is "+ name);
+		response.setMessage("Your movie is "+name);
 		return response;
 	}
+	/**
+	 http://localhost:8080/movies/bestpicture/year/2000/winner
+	 **/
 
+	@CrossOrigin
 	@GetMapping("/movies/{category}/year/{year}/{winner}")
 	public ArrayList<Movies> movie(@PathVariable("category") String category,
 	                               @PathVariable("year") String year
@@ -49,6 +53,13 @@ public class WebController {
 		return matchList;
 	}
 
+	/**
+	 * http://localhost:8080/movies/search?year=1997&category=bestpicture
+	 * @param year
+	 * @param category
+	 * @return
+	 */
+	@CrossOrigin
 	@GetMapping("/movies/search")
 	public ArrayList search(@RequestParam(value = "year", defaultValue= "null" ) String year,
 					   @RequestParam(value = "category") String category )
@@ -68,6 +79,14 @@ public class WebController {
 		return  matchSearch;
 
 	}
+
+	/**
+	 * http://localhost:8080/search?type=actor&year=1936&category=inasupportingrole
+	 * @param type
+	 * @param year
+	 * @param category
+	 * @return
+	 */
 	@GetMapping("/search")
 	public ArrayList<Movies> search(@RequestParam(value = "type", defaultValue = "null") String type
 			,@RequestParam(value = "year", defaultValue = "null") String year,
@@ -91,6 +110,10 @@ public class WebController {
 		return matchSearch;
 	}
 
+	/**
+	 * http://localhost:8080/movies/categories
+	 * @return
+	 */
 	@GetMapping("/movies/categories")
 	public ArrayList<String> cat() {
 		int j = 0;
@@ -109,6 +132,11 @@ public class WebController {
 
 		return list;
 	}
+
+	/**
+	 * http://localhost:8080/winner
+	 * @return
+	 */
 
 	@GetMapping("/winner")
 	public List<Movies> winner()
