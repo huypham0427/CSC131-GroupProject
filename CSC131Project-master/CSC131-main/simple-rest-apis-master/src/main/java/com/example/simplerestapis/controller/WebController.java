@@ -31,6 +31,29 @@ public class WebController {
 	 **/
 
 	@CrossOrigin
+
+	@GetMapping("/categories/{category}/year/{year}")
+	public ArrayList<Movies> movies(@PathVariable("category") String category,
+								   @PathVariable("year") String year
+	){
+		ArrayList<Movies> matchList = new ArrayList<>();
+		ArrayList<Movies> matchYear = new ArrayList<>();
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards()) {
+				// Get the match Categories
+				if (award.getCategory().toUpperCase().equals(category.toUpperCase())
+						&& movie.getYear().equals(year))
+
+				{
+					matchList.add(movie);
+					break;
+				}
+			}
+		}
+		return matchList;
+	}
+
 	@GetMapping("/movies/{category}/year/{year}/{winner}")
 	public ArrayList<Movies> movie(@PathVariable("category") String category,
 	                               @PathVariable("year") String year

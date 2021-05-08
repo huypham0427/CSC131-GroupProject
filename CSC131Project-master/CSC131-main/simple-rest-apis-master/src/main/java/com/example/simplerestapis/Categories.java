@@ -9,6 +9,37 @@ import org.json.simple.JSONObject;
 
 
 public class Categories {
+
+    private String category;
+    private String name;
+    private boolean winner;
+
+    public Categories(String category, String name, boolean winner)
+    {
+        this.category = category;
+        this.name = name;
+        this.winner = winner;
+    }
+
+    public String getCategory()
+    {
+        return category;
+    }
+
+    public void setCategory(String category){
+        this.category = category;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public boolean isWinner()
+    {
+        return winner;
+    }
+
 //    @SuppressWarnings("unchecked")
 //    private ArrayList CategoryList;
 //    //@SerializedName("category")
