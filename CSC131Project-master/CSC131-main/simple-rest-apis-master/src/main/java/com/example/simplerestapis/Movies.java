@@ -34,11 +34,6 @@ public class Movies {
         return film;
     }
 
-//    public String getTitle()
-//    {
-//        return title;
-//    }
-
     public String getYear()
     {
         return year;
