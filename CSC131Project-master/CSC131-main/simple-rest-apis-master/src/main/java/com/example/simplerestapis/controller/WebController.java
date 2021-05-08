@@ -39,6 +39,11 @@ public class WebController {
 		return list;
 	}
 
+	/**
+	 *http://localhost:8080/movies/actor
+	 * @param category
+	 * @return
+	 */
 	@GetMapping("/movies/{category}")
 	public ArrayList<Movies> movie(@PathVariable("category") String category)
 	{
@@ -58,6 +63,33 @@ public class WebController {
 		return matchList;
 	}
 
+	/**
+	 * http://localhost:8080/movies/categories/DIRECTING(DramaticPicture)/1927
+	 * @param category
+	 * @param year
+	 * @return
+	 */
+	@GetMapping("/movies/categories/{category}/{year}")
+	public ArrayList<Movies> Movie (@PathVariable("category") String category,
+	@PathVariable("year") String year
+                                   ){
+		ArrayList<Movies> matchYear = new ArrayList<>();
+
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards()) {
+				// Get the match Categories
+				if (award.getCategory().toUpperCase().equals(category.toUpperCase())
+						&& movie.getYear().equals(year)
+				)
+				{
+					matchYear.add(movie);
+					break;
+				}
+			}
+		}
+		return matchYear;
+	}
 	/**
 	 * http://localhost:8080/categories/bestpicture/year/1979
 	 * @param category
