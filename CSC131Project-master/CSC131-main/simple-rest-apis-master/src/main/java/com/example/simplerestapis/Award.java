@@ -5,6 +5,7 @@ public class Award {
         private String name;
         private boolean winner;
 
+
         public Award(String category, String name, boolean winner)
         {
             this.category = category;
@@ -16,6 +17,7 @@ public class Award {
         {
             return category;
         }
+
 
         public void setCategory(String category){
             this.category = category;
