@@ -37,7 +37,7 @@ public class WebController {
 			for (Award award : movie.getAwards())
 			{
 				// Get the match Categories
-				if (award.getCategory().toUpperCase().equals(category.toUpperCase()))
+				if (award.getCategory().equalsIgnoreCase(category))
 				{
 					matchList.add(movie);
 					break;
@@ -57,7 +57,7 @@ public class WebController {
 		{
 			for (Award award : movie.getAwards()) {
 				// Get the match Categories
-				if (award.getCategory().toUpperCase().equals(category.toUpperCase())
+				if (award.getCategory().equalsIgnoreCase(category)
 						&& movie.getYear().equals(year)
 						&& award.isWinner())
 				{
@@ -71,13 +71,16 @@ public class WebController {
 
 	@GetMapping("/movies/search")
 	public ArrayList<Movies> search(@RequestParam(value = "year", defaultValue = "null") String year
-			,@RequestParam(value = "category") String category)
+			,@RequestParam(value = "category", defaultValue = "null") String category)
 	{
 		ArrayList<Movies> matchSearch = new ArrayList<>();
-		for (Movies movie : ALL_MOVIES) {
-			for (Award award : movie.getAwards()) {
+
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards())
+			{
 				// Get the match Categories
-				if (movie.getYear().equals(year) && award.getCategory().toUpperCase().equals(category.toUpperCase()))
+				if (movie.getYear().equals(year) && award.getCategory().equalsIgnoreCase(category))
 				{
 					matchSearch.add(movie);
 					break;
@@ -114,7 +117,7 @@ public class WebController {
 	@GetMapping("/movies/categories")
 	public ArrayList<String> cat() {
 		int j = 0;
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> list = new ArrayList<>();
 		list.add(ALL_CATEGORIES.get(0));
 
 		for(int i = 1; i <= ALL_CATEGORIES.size() - 2; i++)

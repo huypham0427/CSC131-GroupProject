@@ -32,9 +32,7 @@ public class Movies {
         return film;
     }
 
-    public String getCat() {
-        return category;
-    }
+    public String getCat() { return category; }
 
     public String getYear() {
         return year;
