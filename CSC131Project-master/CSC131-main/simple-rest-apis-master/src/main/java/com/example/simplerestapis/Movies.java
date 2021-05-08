@@ -49,14 +49,4 @@ public class Movies {
         return awards;
     }
 
-    // Format the output of elements in the apis
-//    @Override
-//    public String toString()
-//    {
-//        return "Movie{ " +
-//                "year='" + year + '\'' +
-//                ", ceremony='" + ceremony + '\'' +
-//                ", awards=" + awards +
-//                '}' + "\n";
-//    }
 }
