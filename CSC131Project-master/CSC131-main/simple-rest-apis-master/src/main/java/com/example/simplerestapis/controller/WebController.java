@@ -23,7 +23,7 @@ public class WebController {
 	defaultValue = "null") String name) {
 		SampleResponse response = new SampleResponse();
 		response.setId(1927);
-		response.setMessage("Your movie is "+name);
+		response.setMessage("Your movie is "+ name);
 		return response;
 	}
 
@@ -50,25 +50,46 @@ public class WebController {
 	}
 
 	@GetMapping("/movies/search")
-	public ArrayList<Movies> search(@RequestParam(value = "year", defaultValue = "null") String year
-								   //@PathVariable("category") String category
-	){
-		ArrayList<Movies> matchList = new ArrayList<>();
-		ArrayList<Movies> matchYear = new ArrayList<>();
+	public ArrayList search(@RequestParam(value = "year", defaultValue= "null" ) String year,
+					   @RequestParam(value = "category") String category )
+	{
+
+		ArrayList<Movies> matchSearch = new ArrayList<>();
 		for (Movies movie : ALL_MOVIES)
 		{
 			for (Award award : movie.getAwards()) {
 				// Get the match Categories
-				if (movie.getYear().equals(year))
+				if (movie.getYear().equals(year) && award.getCategory().toUpperCase().equals(category.toUpperCase()))
+					matchSearch.add(movie);
+					break;
+			}
+		}
+
+		return  matchSearch;
+
+	}
+	@GetMapping("/search")
+	public ArrayList<Movies> search(@RequestParam(value = "type", defaultValue = "null") String type
+			,@RequestParam(value = "year", defaultValue = "null") String year,
+									@RequestParam(value = "category", defaultValue = "null") String category)
+	{
+		ArrayList<Movies> matchSearch = new ArrayList<>();
+
+		for(Movies movie : ALL_MOVIES)
+		{
+			for(Award award : movie.getAwards())
+			{
+				if (award.getCategory().toUpperCase().contains(type.toUpperCase())
+						&& movie.getYear().equals(year)
+						&& award.getCategory().toUpperCase().contains(category.toUpperCase()))
 				{
-					matchList.add(movie);
+					matchSearch.add(movie);
 					break;
 				}
 			}
 		}
-		return matchList;
+		return matchSearch;
 	}
-
 
 	@GetMapping("/movies/categories")
 	public ArrayList<String> cat() {
