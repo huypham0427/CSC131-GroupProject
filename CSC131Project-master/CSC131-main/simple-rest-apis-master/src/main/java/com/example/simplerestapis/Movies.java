@@ -1,30 +1,62 @@
 package com.example.simplerestapis;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-
-//import com.google.gson.annotations.SerializedName;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
+import java.util.List;
+import java.util.Objects;
 
 public class Movies {
-    /*
-    @SerializedName("Categories")
-    private ArrayList<Categories> CategoryList;
-    @SuppressWarnings("unchecked")
-    public static void main( String[] args )
+
+    private String title;
+    private String year;
+    private String ceremony;
+    private String category;
+    private ArrayList<Award> awards;
+    private String film;
+    private String Name;
+
+
+    public Movies(String year, String Name, String ceremony, String film)
     {
-
-        //First Employee
-        JSONObject employeeDetails = new JSONObject();
-        employeeDetails.put("firstName", "Lokesh");
-        employeeDetails.put("lastName", "Gupta");
-        employeeDetails.put("website", "howtodoinjava.com");
-
+        //this.title = title;
+        this.year = year;
+        this.ceremony = ceremony;
+        this.awards = new ArrayList<>();
+        this.Name = Name;
+        this.film = film;
 
     }
 
-     */
+
+    public void addAward(Award award){
+        awards.add(award);
+    }
+
+    public String getFilm(){
+        return film;
+    }
+
+    public String getYear()
+    {
+        return year;
+    }
+
+    public String getCeremony()
+    {
+        return ceremony;
+    }
+
+    public List<Award> getAwards()
+    {
+        return awards;
+    }
+
+    // Format the output of elements in the apis
+//    @Override
+//    public String toString()
+//    {
+//        return "Movie{ " +
+//                "year='" + year + '\'' +
+//                ", ceremony='" + ceremony + '\'' +
+//                ", awards=" + awards +
+//                '}' + "\n";
+//    }
 }
