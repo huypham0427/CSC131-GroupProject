@@ -145,6 +145,37 @@ public class WebController {
 	}
 
 	/**
+	 * http://localhost:8080/movies/categories/actor/1947/type/true
+	 * @param category
+	 * @param year
+	 * @param winner
+	 * @return
+	 */
+	@GetMapping("/movies/categories/{category}/{year}/type/{winner}")
+	public ArrayList<Movies> film(@PathVariable("category") String category,
+								  @PathVariable("year") String year,
+								  @PathVariable("winner")Boolean winner)
+	{
+		ArrayList<Movies> matchList = new ArrayList<>();
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards()) {
+				// Get the match Categories
+				if (award.getCategory().toUpperCase().equals(category.toUpperCase())
+						&& movie.getYear().equals(year)
+						&& award.isWinner()==winner
+
+				)
+				{
+					matchList.add(movie);
+					break;
+				}
+			}
+		}
+		return matchList;
+	}
+
+	/**
 	 * http://localhost:8080/movies/search?year=1997&category=bestpicture
 	 * @param year
 	 * @param category
