@@ -40,7 +40,7 @@ public class WebController {
 	}
 
 	/**
-	 *http://localhost:8080/movies/actor
+	 * http://localhost:8080/movies/actor
 	 * @param category
 	 * @return
 	 */
@@ -255,6 +255,8 @@ public class WebController {
 
 		return list;
 	}
+
+
 
 	/**
 	 * http://localhost:8080/winner
