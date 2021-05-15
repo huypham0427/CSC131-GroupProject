@@ -18,7 +18,7 @@ public class WebController {
 	private static final ArrayList<String> ALL_TITLES = readCSV.get_Titles();
 
 
-	/**
+	/*
 	 * http://localhost:8080/movies
 	 * @return
 	 */
@@ -42,8 +42,8 @@ public class WebController {
 	}
 
 
-	/**
-	 *http://localhost:8080/movies/actor
+	/*
+	 * http://localhost:8080/movies/actor
 	 * @param category
 	 * @return
 	 */
@@ -67,7 +67,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/movies/categories/directing_(dramatic_picture)/1927
 	 * @param category
 	 * @param year
@@ -95,7 +95,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/categories/best_picture/year/1979
 	 * @param category
 	 * @param year
@@ -122,12 +122,12 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/best_picture/year/2000/winner
 	 * @param category
 	 * @param year
 	 * @return
-	 **/
+	 */
 	@GetMapping("/{category}/year/{year}/winner")
 	public ArrayList<Movies> movie(@PathVariable("category") String category,
 	                               @PathVariable("year") String year)
@@ -151,7 +151,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/movies/categories/actor/1947/type/true
 	 * @param category
 	 * @param year
@@ -182,7 +182,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/movies/search?year=1997&category=best_picture
 	 * @param year
 	 * @param category
@@ -211,7 +211,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/search?type=actor&year=1936&category=in_a_supporting_role
 	 * @param type
 	 * @param year
@@ -242,7 +242,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/searchRange?type=actor&year=1900&range=2000&category=in_a_leading_role
 	 * @param type
 	 * @param year
@@ -276,7 +276,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/search2Cat?category=actor&category2=actress&year=1900&range=2000
 	 * @param year
 	 * @param range
@@ -310,7 +310,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/movies/categories
 	 * @return
 	 */
@@ -335,7 +335,7 @@ public class WebController {
 	}
 
 
-	/**
+	/*
 	 * http://localhost:8080/winner
 	 * @return
 	 */
