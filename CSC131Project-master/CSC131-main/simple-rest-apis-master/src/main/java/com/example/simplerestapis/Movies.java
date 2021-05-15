@@ -5,10 +5,8 @@ import java.util.Objects;
 
 public class Movies {
 
-    private String title;
     private String year;
     private String ceremony;
-    private String category;
     private ArrayList<Award> awards;
     private String film;
     private String Name;
@@ -16,13 +14,11 @@ public class Movies {
 
     public Movies(String year, String Name, String ceremony, String film)
     {
-        //this.title = title;
         this.year = year;
         this.ceremony = ceremony;
         this.awards = new ArrayList<>();
         this.Name = Name;
         this.film = film;
-
     }
 
 
@@ -49,14 +45,4 @@ public class Movies {
         return awards;
     }
 
-    // Format the output of elements in the apis
-//    @Override
-//    public String toString()
-//    {
-//        return "Movie{ " +
-//                "year='" + year + '\'' +
-//                ", ceremony='" + ceremony + '\'' +
-//                ", awards=" + awards +
-//                '}' + "\n";
-//    }
 }
