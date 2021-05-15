@@ -1,7 +1,5 @@
 package com.example.simplerestapis.controller;
-import com.example.simplerestapis.Award;
-import com.example.simplerestapis.Movies;
-import com.example.simplerestapis.readCSV;
+import com.example.simplerestapis.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.simplerestapis.models.PostRequest;
@@ -48,22 +46,23 @@ public class WebController {
 	 * @return
 	 */
 	@GetMapping("/movies/{category}")
-	public ArrayList<Movies> movie(@PathVariable("category") String category)
+	public Movies movie(@PathVariable("category") String category)
 	{
 		ArrayList<Movies> matchList = new ArrayList<>();
-		for (Movies movie : ALL_MOVIES)
-		{
-			for (Award award : movie.getAwards())
-			{
+		Movies cat = null;
+		for (Movies movie : ALL_MOVIES) {
+			for (Award award : movie.getAwards()) {
 				// Get the matching Category
-				if (award.getCategory().equalsIgnoreCase(category))
-				{
+				if (award.getCategory().equalsIgnoreCase(category)) {
 					matchList.add(movie);
-					break;
+					cat = movie;
 				}
 			}
 		}
-		return matchList;
+		if (cat == null){
+			throw new CatergoryNotFoundException();
+		}
+		return cat;
 	}
 
 
@@ -147,6 +146,10 @@ public class WebController {
 				}
 			}
 		}
+		int year2 = Integer.parseInt(year);
+		if (year2 < 1927 || year2 > 2020){
+			throw new YearNotFoundException();
+		}
 		return matchList;
 	}
 
@@ -161,10 +164,8 @@ public class WebController {
 	@GetMapping("/movies/categories/{category}/{year}/type/{winner}")
 	public ArrayList<Movies> film(@PathVariable("category") String category,
 								  @PathVariable("year") String year,
-								  @PathVariable("winner")Boolean winner)
-	{
+								  @PathVariable("winner")Boolean winner){
 		ArrayList<Movies> matchList = new ArrayList<>();
-
 		for (Movies movie : ALL_MOVIES)
 		{
 			for (Award award : movie.getAwards()) {
@@ -174,7 +175,6 @@ public class WebController {
 					&& award.isWinner() == winner)
 				{
 					matchList.add(movie);
-					break;
 				}
 			}
 		}
