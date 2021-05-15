@@ -1,18 +1,16 @@
 package com.example.simplerestapis;
 
-//import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.*;
 import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
 
 public class readCSV{
 
-
+    /*
+     * all data being used stored in 'Movie' bject.
+     */
     public static List<Movies> all(){
         String filmYear;
         String ceremonyYear;
@@ -27,7 +25,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award_1.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -68,6 +66,9 @@ public class readCSV{
         return arr;
     }
 
+    /*
+     * get individual categories from the movies
+     */
     public static ArrayList<String> get_Category()
     {
         String category;
@@ -75,7 +76,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "C:/Users/jthic/spring/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award_1.csv"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -100,6 +101,9 @@ public class readCSV{
         return arr;
     }
 
+    /*
+     * get all movie titles
+     */
     public static ArrayList<String> get_Titles()
     {
         String title;
@@ -107,7 +111,7 @@ public class readCSV{
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "D:/javaWeb/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_awardtest2.csv"));
+                    "C:/Users/Pat/gitbase/CSC131-GroupProject/CSC131Project-master/CSC131-main/simple-rest-apis-master/src/KaggleData_the_oscar_award_1.csv"));
             String line = reader.readLine();
 
             while (line != null) {
