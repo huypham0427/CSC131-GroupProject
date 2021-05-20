@@ -39,45 +39,17 @@ public class WebController {
 		return list;
 	}
 
-
 	/*
-	 * http://localhost:8080/movies/actor
-	 * @param category
-	 * @return
-	 */
-	@GetMapping("/movies/{category}")
-	public Movies movie(@PathVariable("category") String category)
-	{
-		ArrayList<Movies> matchList = new ArrayList<>();
-		Movies cat = null;
-		for (Movies movie : ALL_MOVIES) {
-			for (Award award : movie.getAwards()) {
-				// Get the matching Category
-				if (award.getCategory().equalsIgnoreCase(category)) {
-					matchList.add(movie);
-					cat = movie;
-				}
-			}
-		}
-		if (cat == null){
-			throw new CatergoryNotFoundException();
-		}
-		return cat;
-	}
-
-
-	/*
-	 * http://localhost:8080/movies/categories/directing_(dramatic_picture)/1927
+	 * http://localhost:8080/categories/best_picture/year/1979
 	 * @param category
 	 * @param year
 	 * @return
 	 */
-	@GetMapping("/movies/categories/{category}/{year}")
-	public ArrayList<Movies> Movie (@PathVariable("category") String category,
+	@GetMapping("/categories/{category}/year/{year}")
+	public ArrayList<Movies> movies(@PathVariable("category") String category,
 									@PathVariable("year") String year)
 	{
 		ArrayList<Movies> matchList = new ArrayList<>();
-
 		for (Movies movie : ALL_MOVIES)
 		{
 			for (Award award : movie.getAwards()) {
@@ -93,34 +65,6 @@ public class WebController {
 		return matchList;
 	}
 
-
-	/*
-	 * http://localhost:8080/categories/best_picture/year/1979
-	 * @param category
-	 * @param year
-	 * @return
-	 */
-	@GetMapping("/categories/{category}/year/{year}")
-	public ArrayList<Movies> movies(@PathVariable("category") String category,
-								    @PathVariable("year") String year)
-	{
-		ArrayList<Movies> matchList = new ArrayList<>();
-		for (Movies movie : ALL_MOVIES)
-		{
-			for (Award award : movie.getAwards()) {
-				// Get the match Categories
-				if (award.getCategory().equalsIgnoreCase(category)
-					&& movie.getYear().equals(year))
-				{
-					matchList.add(movie);
-					break;
-				}
-			}
-		}
-		return matchList;
-	}
-
-
 	/*
 	 * http://localhost:8080/best_picture/year/2000/winner
 	 * @param category
@@ -129,7 +73,7 @@ public class WebController {
 	 */
 	@GetMapping("/{category}/year/{year}/winner")
 	public ArrayList<Movies> movie(@PathVariable("category") String category,
-	                               @PathVariable("year") String year)
+								   @PathVariable("year") String year)
 	{
 		ArrayList<Movies> matchList = new ArrayList<>();
 
@@ -171,8 +115,8 @@ public class WebController {
 			for (Award award : movie.getAwards()) {
 				// Get the match Categories
 				if (award.getCategory().equalsIgnoreCase(category)
-					&& movie.getYear().equals(year)
-					&& award.isWinner() == winner)
+						&& movie.getYear().equals(year)
+						&& award.isWinner() == winner)
 				{
 					matchList.add(movie);
 				}
@@ -241,6 +185,58 @@ public class WebController {
 		return matchSearch;
 	}
 
+	/*
+	 * http://localhost:8080/movies/actor
+	 * @param category
+	 * @return
+	 */
+	@GetMapping("/movies/{category}")
+	public Movies movie(@PathVariable("category") String category)
+	{
+		ArrayList<Movies> matchList = new ArrayList<>();
+		Movies cat = null;
+		for (Movies movie : ALL_MOVIES) {
+			for (Award award : movie.getAwards()) {
+				// Get the matching Category
+				if (award.getCategory().equalsIgnoreCase(category)) {
+					matchList.add(movie);
+					cat = movie;
+				}
+			}
+		}
+		if (cat == null){
+			throw new CatergoryNotFoundException();
+		}
+		return cat;
+	}
+
+
+	/*
+	 * http://localhost:8080/movies/categories/directing_(dramatic_picture)/1927
+	 * @param category
+	 * @param year
+	 * @return
+	 */
+	@GetMapping("/movies/categories/{category}/{year}")
+	public ArrayList<Movies> Movie (@PathVariable("category") String category,
+									@PathVariable("year") String year)
+	{
+		ArrayList<Movies> matchList = new ArrayList<>();
+
+		for (Movies movie : ALL_MOVIES)
+		{
+			for (Award award : movie.getAwards()) {
+				// Get the match Categories
+				if (award.getCategory().equalsIgnoreCase(category)
+						&& movie.getYear().equals(year))
+				{
+					matchList.add(movie);
+					break;
+				}
+			}
+		}
+		return matchList;
+	}
 
 	/*
 	 * http://localhost:8080/searchRange?type=actor&year=1900&range=2000&category=in_a_leading_role
